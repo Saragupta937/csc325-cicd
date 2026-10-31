@@ -13,4 +13,3 @@ class StatusAPITests(TestCase):
     def test_course_name(self):
         response = self.client.get("/api/status/")
         self.assertEqual(response.json()["course"], "CSC325")
-
