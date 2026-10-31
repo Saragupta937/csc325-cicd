@@ -43,4 +43,9 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Deployment configuration pending"
+      - name: Trigger Render deployment
+        env:
+          DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          test -n "$DEPLOY_HOOK"
+          curl --fail --show-error --silent --request POST "$DEPLOY_HOOK"
